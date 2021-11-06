@@ -8,4 +8,4 @@ output:
 ---
 
 
-<embed src="Tianchuan Gao.pdf" width="800px" height="2100px" />
+<embed src="Tianchuan Gao.pdf" width="800px" height="1000px" />
