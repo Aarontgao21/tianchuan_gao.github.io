@@ -1,0 +1,11 @@
+---
+title: "Resume"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+---
+
+
+<embed src="Tianchuan Gao.pdf" width="800px" height="2100px" />

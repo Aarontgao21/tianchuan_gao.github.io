@@ -1,0 +1,12 @@
+---
+title: "Tianchuan Gao's website"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+---
+
+## About Me
+I am Tianchuan(Aaron) Gao, a first-year MS student in the department of biostatistics at Columbia University Mailman School of Public Health.
+This is a more detailed [resume](resume.html)
