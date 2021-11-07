@@ -1,0 +1,25 @@
+---
+title: "Dashboard: NY NOAA"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    source: embed
+---
+
+```{r}
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+library(flexdashboard)
+```
+
+```{r}
+data("ny_noaa")
+ny_noaa_tidy = ny_noaa %>%
+   separate(date, into = c("year","month","day"), sep = "-") %>%
+    mutate_at(vars(year,month,day), as.factor) %>% 
+    mutate_at(vars(tmax, tmin, prcp, snow, snwd), as.numeric) %>%
+   mutate(tmax = tmax / 10, tmin = tmin / 10, prcp = prcp / 10)
+```
+
