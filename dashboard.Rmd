@@ -20,6 +20,48 @@ ny_noaa_tidy = ny_noaa %>%
    separate(date, into = c("year","month","day"), sep = "-") %>%
     mutate_at(vars(year,month,day), as.factor) %>% 
     mutate_at(vars(tmax, tmin, prcp, snow, snwd), as.numeric) %>%
-   mutate(tmax = tmax / 10, tmin = tmin / 10, prcp = prcp / 10)
+   mutate(tmax = tmax / 10, tmin = tmin / 10, prcp = prcp / 10)%>%
+  sample_n(100000)
+  
+```
+
+column {data-width=650}
+-----------------------------------------------------------------------
+
+### Scatter plot for max and min tempatures in 2010
+```{r}
+ny_noaa_tidy %>%
+  filter(year == "2010") %>%
+  mutate(text_label = str_c("Year: ", year, "\nMonth: ", month)) %>% 
+  plot_ly(x = ~tmax, y = ~tmin, type = "scatter", mode = "markers",alpha = .5, color = ~year, text = ~text_label)
+```
+
+
+column {data-width=350}
+-----------------------------------------------------------------------
+
+### Bar plot for average snowfall in Jan
+```{r}
+ny_noaa_tidy %>%
+  filter(snow > 0 & month=="01") %>%
+  group_by(year) %>%
+  summarize(avg_snow = mean(snow)) %>% 
+  mutate(text_label = str_c("Year: ", year, "\nMean\nSnowfall(mm): ", avg_snow)) %>%
+    plot_ly(x = ~year, y = ~avg_snow, color = ~year, type = "bar", text = ~text_label)
+```
+
+
+### box plot for precipitation in Jun
+```{r}
+ny_noaa_tidy %>%
+  filter(prcp > 0 & month == "07") %>%
+    group_by(year) %>%
+    mutate(text_label = str_c("Year: ", year, "\n Precipitation(mm): ", prcp)) %>%
+    plot_ly(x = ~year, 
+            y = ~prcp, 
+            color = ~year, 
+            type = "box", 
+            text = ~text_label,
+            colors = "viridis")
 ```
 
