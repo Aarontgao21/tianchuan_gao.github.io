@@ -33,7 +33,7 @@ column {data-width=650}
 ny_noaa_tidy %>%
   filter(year == "2010") %>%
   mutate(text_label = str_c("Year: ", year, "\nMonth: ", month)) %>% 
-  plot_ly(x = ~tmax, y = ~tmin, type = "scatter", mode = "markers",alpha = .5, color = ~year, text = ~text_label)
+  plot_ly(x = ~tmax, y = ~tmin, type = "scatter", mode = "markers",alpha = .5, color = ~year, text = ~text_label, colors = "YlOrRd")
 ```
 
 
@@ -57,11 +57,6 @@ ny_noaa_tidy %>%
   filter(prcp > 0 & month == "07") %>%
     group_by(year) %>%
     mutate(text_label = str_c("Year: ", year, "\n Precipitation(mm): ", prcp)) %>%
-    plot_ly(x = ~year, 
-            y = ~prcp, 
-            color = ~year, 
-            type = "box", 
-            text = ~text_label,
-            colors = "viridis")
+    plot_ly(x = ~year,  y = ~prcp, color = ~year, type = "box", text = ~text_label,colors = "YlOrRd")
 ```
 
